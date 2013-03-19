@@ -1,0 +1,8 @@
+* links
+  - [[https://github.com/appwilldev/moochine][moochine]]
+  - [[https://github.com/appwilldev/moochine-demo][moochine demo]]
+  - [[http://openresty.org][OpenResty]]
+  - [[http://blog.163.com/lhmwzy@126/blog/static/64215736201212384413704/][使用ngx_openresty创建一个ajax式分页显示数据列表]]
+  - [[file://usr/local/Cellar/postgresql/9.2.3/share/doc/postgresql/html/index.html][PostgreSQL local document]]
+  - [[file://usr/local/lib/luarocks/rocks/luasql-postgres/2.3.0-1/doc/us/index.html][luasql]]
+  - [[http://www.redisgreen.net/blog/2013/03/18/intro-to-lua-for-redis-programmers/][LUA: A GUIDE FOR REDIS USERS]]

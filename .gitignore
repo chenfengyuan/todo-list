@@ -1,0 +1,3 @@
+*.pyc
+*.log.*
+nginx_runtime

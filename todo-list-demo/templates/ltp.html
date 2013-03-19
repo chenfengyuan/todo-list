@@ -1,0 +1,12 @@
+<html>
+  <?lua= v ?>
+  <body>
+    <div class="content">
+      <?lua for i,content in ipairs(content.column) do ?>
+      <div id="Column<?lua= i - 1 ?>">
+	<?lua= content ?></div>
+      <?lua end ?>
+    </div>
+  </body>
+</html>
+</html>
