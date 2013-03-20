@@ -6,3 +6,13 @@
   - [[file://usr/local/Cellar/postgresql/9.2.3/share/doc/postgresql/html/index.html][PostgreSQL local document]]
   - [[file://usr/local/lib/luarocks/rocks/luasql-postgres/2.3.0-1/doc/us/index.html][luasql]]
   - [[http://www.redisgreen.net/blog/2013/03/18/intro-to-lua-for-redis-programmers/][LUA: A GUIDE FOR REDIS USERS]]
+  - [[http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html][reStructuredText Markup Specification]]
+* postgresql
+** 设置用户
+   [[http://serverfault.com/questions/198002/postgresql-what-does-grant-all-privileges-on-database-do][Postgresql: what does GRANT ALL PRIVILEGES ON DATABASE do?]]
+   因为安全的问题,以后这里可能需要重新设置下
+#+BEGIN_EXAMPLE
+CREATE USER cfy WITH PASSWORD 'foobar'
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO cfy;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO cfy;
+#+END_EXAMPLE

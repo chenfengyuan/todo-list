@@ -8,9 +8,6 @@ module("test", package.seeall)
 
 local JSON = require("cjson")
 local Redis = require("resty.redis")
-local driver = require("luasql.postgres")
-local env = assert(driver.postgres())
-local con = assert(env:connect("todo-list"))
 local utils = require("awutils")
 
 local push = function(arr,item)
@@ -41,9 +38,9 @@ end
 
 
 function longtext(req, resp)
-   local a = string.rep("xxxxxxxxxx", 100000)
-   resp:writeln(a)
-   resp:finish()
+   -- local a = string.rep("xxxxxxxxxx", 100000)
+   -- resp:writeln(a)
+   -- resp:finish()
    
    local red = Redis:new()
    local ok, err = red:connect("127.0.0.1", 6379)
@@ -53,14 +50,18 @@ function longtext(req, resp)
 
    --red:set_timeout(30)
 
-   for i=1,1000 do
-      local k = "foo"..tostring(i)
-      red:set(k, "bar"..tostring(i))
-      local v = red:get(k)
-      ngx.log(ngx.ERR, "i:"..tostring(i), ", v:", v)
-      
-      ngx.sleep(1)
-   end
+   -- for i=1,1000 do
+   --    local k = "foo"..tostring(i)
+   --    red:set(k, "bar"..tostring(i))
+   --    local v = red:get(k)
+   --    ngx.log(ngx.ERR, "i:"..tostring(i), ", v:", v)
+   
+   --    ngx.sleep(1)
+   -- end
+   local foo = red:get("foo")
+   -- foo = foo + 1
+   resp:writeln(foo)
+   -- red:set("foo",foo)
 end
 
 function ltp(req, resp)
@@ -71,7 +72,7 @@ function ltp(req, resp)
 				   <h1>Hello World Column One</h1>
 				   <p>Hello <?lua= 1+1 ?>!</p>
 				]==],
-				   [==[
+			       [==[
 				       <h1>Hello World Column Two</h1>
 				       <p>Hello <?lua= 1+2 ?>!</p>
 				    ]==]
@@ -80,14 +81,13 @@ end
 
 function index(rep,resp)
    local todo_lists2={}
-   local cur = assert(con:execute "SELECT * from tl_items")
-   local row = {}
-   while (cur:fetch(row)) do
-      push(todo_lists2,{title=row[3],content=row[4]})
-   end
    local todo_lists={
       {title="title-a",content="content-a"},
       {title="title-b",content="content-b"}}
    -- resp:ltp("index.html",{todo_lists = todo_lists})
-   resp:ltp("index.html",{todo_lists = todo_lists2})
+   -- resp:ltp("index.html",{todo_lists = todo_lists2})
+   local resp2 = ngx.location.capture("/db/get_items?limit=3");
+   resp:ltp("index.html",{todo_lists = JSON.decode(resp2.body)})
+   -- resp:writeln(utils.strify(JSON.decode(resp2.body)))
+   -- ngx.say(ngx.var.uri, ": ", ngx.var.dog)
 end

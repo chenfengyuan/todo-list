@@ -2,10 +2,10 @@
   <body>
     <?lua for _,item in pairs(todo_lists) do ?>
     <h2>
-      <?lua= item["title"] ?>
+      <?lua= item["item_title"] ?>
     </h2>
     <p class="content">
-      <?lua= item["content"] ?>
+      <?lua= item["item_content"] ?>
     </p>
     <?lua end ?>
   </body>
