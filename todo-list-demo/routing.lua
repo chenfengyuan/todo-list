@@ -15,4 +15,7 @@ map('^/longtext',                   'test.longtext')
 map('^/ltp',                        'test.ltp')
 map('^/index',                      'test.index')
 map('^/db/create_item',             'db.create_item')
+map('^/db/count_items',             'db.count_items')
+map('^/db/get_item',                'db.get_item')
+map('^/db/update_item',             'db.update_item')
 ---------------------------------------------------------------------
