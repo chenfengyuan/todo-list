@@ -28,3 +28,10 @@ TODO LIST是一个简单的todo list服务
 1) 本来使用luasql-postgres来和PostgreSQL交互,准备换成ngx_postgres,打算在PostgreSQL里存放todo资料,在Redis里存放当前用户的一些信息,因为没有接触过,不好估计时间,预计花一个下午时间熟悉相应的模块,然后做个demo出来看看.
 
 
+体会
+----
+a) 看了下 Demiao Lin(ldmiao <at< gmail.com>推荐的文章之一: `由Lua 粘合的Nginx生态环境`_,才体会到原来协程是这么用的,lua是多么好用.接下去赶紧尝试下.
+
+
+   
+.. _由Lua 粘合的Nginx生态环境: http://blog.zoomquiet.org/pyblosxom/oss/openresty-intro-2012-03-06-01-13.html
