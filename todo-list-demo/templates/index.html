@@ -1,6 +1,7 @@
 <html>
   <body>
     <?lua for _,item in pairs(todo_lists) do ?>
+    <div id="<?lua= item.item_id ?>">
     <h2>
       <?lua= item["item_title"] ?>
     </h2>
@@ -8,5 +9,6 @@
       <?lua= item["item_content"] ?>
     </p>
     <?lua end ?>
+    </div>
   </body>
 </html>

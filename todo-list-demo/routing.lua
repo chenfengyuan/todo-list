@@ -14,4 +14,5 @@ map('^/hello%?nam(e=.*)',           'test.hello')
 map('^/longtext',                   'test.longtext')
 map('^/ltp',                        'test.ltp')
 map('^/index',                      'test.index')
+map('^/db/create_item',             'db.create_item')
 ---------------------------------------------------------------------

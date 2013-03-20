@@ -79,15 +79,16 @@ function ltp(req, resp)
 			    }}})
 end
 
-function index(rep,resp)
+function index(req,resp)
    local todo_lists2={}
    local todo_lists={
       {title="title-a",content="content-a"},
       {title="title-b",content="content-b"}}
    -- resp:ltp("index.html",{todo_lists = todo_lists})
    -- resp:ltp("index.html",{todo_lists = todo_lists2})
-   local resp2 = ngx.location.capture("/db/get_items?limit=3");
+   local resp2 = ngx.location.capture("/db/_get_items");
    resp:ltp("index.html",{todo_lists = JSON.decode(resp2.body)})
    -- resp:writeln(utils.strify(JSON.decode(resp2.body)))
    -- ngx.say(ngx.var.uri, ": ", ngx.var.dog)
 end
+
