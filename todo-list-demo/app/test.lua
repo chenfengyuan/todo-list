@@ -92,3 +92,24 @@ function index(req,resp)
    -- ngx.say(ngx.var.uri, ": ", ngx.var.dog)
 end
 
+function get_last_item_html(req,resp)
+   local resp2 = ngx.location.capture("/db/_get_last_item");
+   resp:ltp("item.html",{todo_lists = JSON.decode(resp2.body)})
+end
+
+function get_all_items_html(req,resp)
+   local resp2 = ngx.location.capture("/db/_get_items");
+   resp:ltp("item.html",{todo_lists = JSON.decode(resp2.body)})
+end
+
+function get_item_html(req,resp)
+   if req.method=='POST' then req:read_body() end
+   local id = req:get_arg("id")
+   if (not id) then
+      local resp2 = ngx.location.capture("/db/_get_last_item");
+      resp:ltp("item.html",{todo_lists = JSON.decode(resp2.body)})
+   else
+      local resp2 = ngx.location.capture("/db/_get_item",{args = {id = id},method = ngx.HTTP_GET})
+      resp:ltp("item.html",{todo_lists = JSON.decode(resp2.body)})
+   end
+end

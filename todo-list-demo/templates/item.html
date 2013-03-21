@@ -1,0 +1,16 @@
+<?lua for _,item in pairs(todo_lists) do ?>
+<div id="<?lua= item.item_id ?>" class="span4">
+  <h2>
+    <?lua= item["item_title"] ?>
+  </h2>
+  <p>
+    <?lua= item["item_content"] ?>
+  </p>
+  <div class="btn-group">
+    <p>
+      <a class="btn" href="#" onclick="del(this)">Delete</a>
+      <!-- <a class="btn" href="#">Modify</a> -->
+    </p>
+  </div>
+</div>
+<?lua end ?>

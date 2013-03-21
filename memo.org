@@ -16,3 +16,8 @@ CREATE USER cfy WITH PASSWORD 'foobar'
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO cfy;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO cfy;
 #+END_EXAMPLE
+* frontend[2/4]
+** DONE 删除todo item
+** TODO 添加todo item
+** TODO 修改todo item
+** DONE 更新jquery

@@ -18,4 +18,8 @@ map('^/db/create_item',             'db.create_item')
 map('^/db/count_items',             'db.count_items')
 map('^/db/get_item',                'db.get_item')
 map('^/db/update_item',             'db.update_item')
+map('^/db/delete_item',             'db.delete_item')
+map('^/get_last_item_html',         'test.get_last_item_html')
+map('^/get_item_html',              'test.get_item_html')
+map('^/get_all_items_html',         'test.get_all_items_html')
 ---------------------------------------------------------------------

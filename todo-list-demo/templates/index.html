@@ -1,14 +1,56 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
   <body>
-    <?lua for _,item in pairs(todo_lists) do ?>
-    <div id="<?lua= item.item_id ?>">
-    <h2>
-      <?lua= item["item_title"] ?>
-    </h2>
-    <p class="content">
-      <?lua= item["item_content"] ?>
-    </p>
-    <?lua end ?>
+    <script src="static/jquery-1.9.1.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/main.js"></script>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span2">
+	  <form id="create_form">
+	    <fieldset>
+	      <legend>Create a new todo item</legend>
+	      <label>title</label>
+	      <input type="text" id="title" placeholder="Title...">
+	      <label>content</label>
+	      <input type="text" id="content" placeholder="Content...">
+	      <div class="btn-group">
+		<button type="submit" class="btn" onclick="create(this)">Submit</button>
+		<button type="reset" class="btn">Clear</button>
+	      </div>
+	    </fieldset>
+	  </form>
+	</div>
+	<div class="span10">
+	  <div id="todo-list" class="row">
+	    <!-- <?lua for _,item in pairs(todo_lists) do ?> -->
+	    <!-- <div id="<?lua= item.item_id ?>" class="span4"> -->
+            <!--   <h2> -->
+    	    <!-- 	<?lua= item["item_title"] ?> -->
+            <!--   </h2> -->
+            <!--   <p> -->
+    	    <!-- 	<?lua= item["item_content"] ?> -->
+            <!--   </p> -->
+	    <!--   <div class="btn-group"> -->
+	    <!-- 	<p> -->
+	    <!-- 	  <a class="btn" href="#" onclick="del(this)">Delete</a> -->
+	    <!-- 	  <a class="btn" href="#">Modify</a> -->
+	    <!-- 	</p> -->
+	    <!--   </div> -->
+	    <!-- </div> -->
+	    <!-- <?lua end ?> -->
+	  </div>
+	</div>
+      </div>
     </div>
+    <script type="text/javascript">
+      reload_todo_list();
+    </script>
   </body>
 </html>

@@ -66,3 +66,19 @@ function update_item(req,resp)
       end
       resp:writeln(resp2.body)
 end      
+function delete_item(req,resp)
+      if req.method=='POST' then req:read_body() end
+      resp.headers['Content-Type'] = 'application/json'
+      local id = req:get_arg("id")
+      if (not id) then
+	 resp:writeln(JSON.encode({err="id required"}))
+	 logger:w("uri: %s ;err: %s",req.uri,"id required")
+	 return
+      end
+      local resp2 = ngx.location.capture("/db/_delete_item",
+      					 {args = {id = id},method = ngx.HTTP_GET})
+      if(resp2.status ~= 200) then
+      	 ngx.exit(resp2.status)
+      end
+      resp:writeln(resp2.body)
+end      
