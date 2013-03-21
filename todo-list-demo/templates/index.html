@@ -15,14 +15,17 @@
 	<div class="span2">
 	  <form id="create_form">
 	    <fieldset>
-	      <legend>Create a new todo item</legend>
+	      <legend>
+		Create/Modify a todo item
+	      </legend>
 	      <label>title</label>
 	      <input type="text" id="title" placeholder="Title...">
 	      <label>content</label>
 	      <textarea id="content" placeholder="Content..."></textarea>
+	      <input type="hidden" id="submit-id" value="">
 	      <div class="btn-group">
 		<button type="submit" class="btn" onclick="create(this)">Submit</button>
-		<button type="reset" class="btn">Clear</button>
+		<button type="reset" class="btn" onclick="submit_clear()">Clear</button>
 	      </div>
 	    </fieldset>
 	  </form>

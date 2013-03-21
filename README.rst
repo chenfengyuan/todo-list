@@ -30,6 +30,8 @@ TODO LIST是一个简单的todo list服务
 3) 3.20晚上:现在可以用 http://127.0.0.1:9800/index 来获取整个列表,用类似 curl "http://localhost:9800/db/update_item?id=1&title=title40" GET/POST的方式创建,修改,删除了.准备明天实现网页端的功能.
 4) 3.21早上:花一个上午的时间了解下bootstrap
 5) 3.21下午:可以做到在web端更新和删除item,通过ajax方式实现.
+6) 3.21晚上:已经可以修改了,而且还做了下对html entities的encode/decode.不过todo状态还没做到web上.
+   
 计划
 ----
 1) 准备用3.21下午的时间做个简单的web前端出来.
