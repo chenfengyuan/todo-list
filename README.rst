@@ -25,9 +25,10 @@ TODO LIST是一个简单的todo list服务
 
 进度
 ----
-1) 本来使用luasql-postgres来和PostgreSQL交互,准备换成ngx_postgres,打算在PostgreSQL里存放todo资料,在Redis里存放当前用户的一些信息,因为没有接触过,不好估计时间,预计花一个下午时间熟悉相应的模块,然后做个demo出来看看.
-2) 现在大概知道如何通过ngx_postgres来和数据库交互了,晚上尝试写个可以添加修改删除的简单demo出来.
-3) 现在可以用 http://127.0.0.1:9800/index 来获取整个列表,用类似 curl "http://localhost:9800/db/update_item?id=1&title=title40" GET/POST的方式创建,修改,删除了.准备明天实现网页端的功能.
+1) 3.20中午:本来使用luasql-postgres来和PostgreSQL交互,准备换成ngx_postgres,打算在PostgreSQL里存放todo资料,在Redis里存放当前用户的一些信息,因为没有接触过,不好估计时间,预计花一个下午时间熟悉相应的模块,然后做个demo出来看看.
+2) 3.20下午:现在大概知道如何通过ngx_postgres来和数据库交互了,晚上尝试写个可以添加修改删除的简单demo出来.
+3) 3.20晚上:现在可以用 http://127.0.0.1:9800/index 来获取整个列表,用类似 curl "http://localhost:9800/db/update_item?id=1&title=title40" GET/POST的方式创建,修改,删除了.准备明天实现网页端的功能.
+4) 3.21早上:花一个上午的时间了解下bootstrap,并用bootstrap做出个简单的前端出来.
 
 体会
 ----
