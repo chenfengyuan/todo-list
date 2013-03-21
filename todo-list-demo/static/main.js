@@ -26,7 +26,7 @@ function get_last_todo_item(){
 	$.get("/get_last_item_html",function(data){
 		$("#todo-list").append(data);
 	})
-}		
+}
 <!-- $.get("/db/get_item",{id:"13"}, -->
 <!-- function(data){ -->
 <!-- alert(data[0]["item_id"])}) -->

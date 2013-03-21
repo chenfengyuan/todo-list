@@ -1,6 +1,8 @@
 module("db", package.seeall)
 local JSON = require("cjson")
 local utils = require("awutils")
+local html = require("htmlentities")
+local entities = html.htmlentities
 function count_items(req,resp)
    local resp2 = ngx.location.capture("/db/_count_items")
    resp:writeln(JSON.decode(resp2.body)[1]["count"])
@@ -9,8 +11,8 @@ end
 function create_item(req,resp)
    if req.method=='POST' then req:read_body() end
    local state = req:get_arg("state",0)
-   local title = req:get_arg("title","no title")
-   local content = req:get_arg("content","no content")
+   local title = entities(req:get_arg("title","no title"))
+   local content = entities(req:get_arg("content","no content"))
    local resp2 = ngx.location.capture("/db/_create_item",
    				      {args = {state = state,
    					       title = title,
@@ -51,9 +53,12 @@ function update_item(req,resp)
 	 return
       end
       local old = JSON.decode(ngx.location.capture("/db/_get_item",{args = {id = id}}).body)[1]
-      local state = req:get_arg("state",old.item_todo_state)
-      local title = req:get_arg("title",old.item_title)
-      local content = req:get_arg("content",old.item_content)
+      local state = req:get_arg("state")
+      if state then state = entities(state) else state =  old.item_todo_state end
+      local title = req:get_arg("title")
+      if title then title = entities(title) else title =  old.item_title end
+      local content = req:get_arg("content")
+      if content then content = entities(content) else content =  old.item_content end
       local resp2 = ngx.location.capture("/db/_update_item",
       					 {args = {
 					     id = id,
