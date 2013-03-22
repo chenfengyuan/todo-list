@@ -23,9 +23,7 @@ TODO LIST是一个简单的todo list服务
 
 截图
 ----
-`截图1` __
-__ http://cfy.googlecode.com/files/Screen%20Shot%202013-03-22%20at%201.13.01%20PM.png
-.. image:: http://cfy.googlecode.com/files/Screen%20Shot%202013-03-22%20at%201.13.01%20PM.png
+1) http://cfy.googlecode.com/files/Screen%20Shot%202013-03-22%20at%201.13.01%20PM.png
 
 实现功能
 --------
