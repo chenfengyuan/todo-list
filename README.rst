@@ -4,6 +4,26 @@
 
 TODO LIST是一个简单的todo list服务
 
+运行
+----
+
+# 启动postgres
+$ postgres -D /usr/local/var/postgres
+
+# 初始化数据库
+$ /path/to/todo-list/todo-list-demo/bin/create-db.sh 
+
+# 启动todo-list
+$ /path/to/todo-list/todo-list-demo/bin/start.sh
+
+# 浏览器打开http://127.0.0.1:9800/
+
+# 左侧是新增修改栏,输入内容后按Submit创建新的todo item,创建的item出现右边.按Clear来清空输入,按Change Todo来切换Todo状态.
+# 右边的会显示每个todo item,todo状态若是TODO则会是红色,若是DONE则颜色是绿色.
+# 按Delete按钮删除当前todo item,按Modify,则将当前todo item复制到左边,修改后按Submit提交.
+# 也可以直接按Change Todo来切换当前todo状态.
+# 前端和后端全部通过ajax交互.
+
 实现功能
 --------
 
