@@ -23,14 +23,21 @@
 	      <label>content</label>
 	      <textarea id="content" placeholder="Content..."></textarea>
 	      <input type="hidden" id="submit-id" value="">
+	      <p id="submit-todo-state" hidden="true">
+		0
+	      </p>
+	      <p id="submit-todo-state-dis">
+		TODO
+	      </p>
 	      <div class="btn-group">
-		<button type="submit" class="btn" onclick="create(this)">Submit</button>
+		<button type="submit" class="btn" onclick="todo_submit()">Submit</button>
 		<button type="reset" class="btn" onclick="submit_clear()">Clear</button>
+		<a class="btn" href="#" onclick="change_submit_todo_state()">Change</a>
 	      </div>
 	    </fieldset>
 	  </form>
 	</div>
-	<div class="span10">
+	<div class="span9 offset1">
 	  <div id="todo-list" class="row">
 	    <!-- <?lua for _,item in pairs(todo_lists) do ?> -->
 	    <!-- <div id="<?lua= item.item_id ?>" class="span4"> -->

@@ -1,15 +1,26 @@
 <?lua for _,item in pairs(todo_lists) do ?>
-<div id="<?lua= item.item_id ?>" class="span4">
-  <h2>
+<div id="<?lua= item.item_id ?>" class="span4 alert">
+  <div class="row-fluid">
+  <h2 id="item-title-<?lua= item.item_id ?>">
     <?lua= item["item_title"] ?>
   </h2>
-  <p>
+  <p class="span1 offset8" id="item-todo-state-dis-<?lua= item.item_id ?>">
+  </p>
+  </div>
+  <p id="item-todo-state-<?lua= item.item_id ?>" hidden="true">
+    <?lua= item["item_todo_state"] ?>
+  </p>
+  <p id="item-content-<?lua= item.item_id ?>">
     <?lua= item["item_content"] ?>
   </p>
+  <script type="text/javascript">
+    set_alert("<?lua= item.item_id ?>");
+  </script>
   <div class="btn-group">
     <p>
       <a class="btn" href="#" onclick="del(this)">Delete</a>
       <a class="btn" href="#" onclick="set_submit_info(this)">Modify</a>
+      <a class="btn" href="#" onclick="change_todo_state(this)">Change</a>
     </p>
   </div>
 </div>
