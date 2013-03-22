@@ -34,14 +34,39 @@ function submit_clear(){
     $("#submit-todo-state-dis").text("TODO");
     $("#create_form")[0].reset();
 }
+var decode_entities = (function() {
+    // Remove HTML Entities
+    var element = document.createElement('div');
+
+    function decode_HTML_entities (str) {
+
+        if(str && typeof str === 'string') {
+
+            // Escape HTML before decoding for HTML Entities
+            str = escape(str).replace(/%26/g,'&').replace(/%23/g,'#').replace(/%3B/g,';');
+
+            element.innerHTML = str;
+            if(element.innerText){
+                str = element.innerText;
+                element.innerText = '';
+            }else{
+                // Firefox support
+                str = element.textContent;
+                element.textContent = '';
+            }
+        }
+        return unescape(str);
+    }
+    return decode_HTML_entities;
+})();
 function set_submit_info(obj){
     $("#submit-id").val($(obj).parent().parent().parent().attr('id'));
     $.get("/db/get_item",{id:$(obj).parent().parent().parent().attr('id')},
 	  function(data){
-	      $("#title").val($("<div/>").html(data[0]["item_title"]).text());
-	      $("#content").val($("<div/>").html(data[0]["item_content"]).text());
+	      $("#title").val(decode_entities(data[0]["item_title"]));
+	      $("#content").val(decode_entities(data[0]["item_content"]));
 	      $("#submit-todo-state").text(data[0]["item_todo_state"]);
-	      $("#title").val($("<div/>").html(data[0]["item_title"]).text());
+	      $("#title").val(decode_entities(data[0]["item_title"]));
 	      set_submit_todo_state();
 	  });
 }
