@@ -2,7 +2,10 @@ function get_id(id_str){
     return id_str.replace("item-id-","");
 }
 function del(obj) {
-    $.get("/db/delete_item",{id:get_id($(obj).parent().parent().parent().attr('id'))},
+    var id = get_id($(obj).parent().parent().parent().attr('id'));
+    if(id===$("#submit-id").val())
+	submit_clear();
+    $.get("/db/delete_item",{id:id},
 	  function(data){
 	      $(obj).parent().parent().parent().remove();
 	  });
@@ -108,6 +111,8 @@ function set_submit_todo_state () {
 }
 function change_todo_state (obj) {
     var id = get_id($(obj).parent().parent().parent().attr('id'));
+    if(id===$("#submit-id").val())
+	submit_clear();
     if(parseInt($("#item-todo-state-"+ id).text())===0){
 	$("#item-todo-state-"+ id).text("1");
 	$("#item-id-"+id).removeClass("alert-error");
