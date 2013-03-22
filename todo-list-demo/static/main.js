@@ -10,21 +10,21 @@ function del(obj) {
 
 function todo_submit() {
     id=$("#submit-id").val();
-    if ($("#content").val() !== "" &&
-	$("#title").val() !== "") {
+    if ($("#submit-todo-content").val() !== "" &&
+	$("#submit-todo-title").val() !== "") {
 	if($("#submit-id").val()!==""){
 	    $.post("/db/update_item",{
 		id:$("#submit-id").val(),
-		content:$("#content").val(),
+		content:$("#submit-todo-content").val(),
 		state:$("#submit-todo-state").text(),
-		title:$("#title").val()},function(data){
+		title:$("#submit-todo-title").val()},function(data){
 		    reload_todo_item_with_id(id);
 		});
 	}else{
 	    $.post("/db/create_item",{
-		content:$("#content").val(),
+		content:$("#submit-todo-content").val(),
 		state:$("#submit-todo-state").text(),
-		title:$("#title").val()},function(data){
+		title:$("#submit-todo-title").val()},function(data){
 		    get_last_todo_item();
 		});
 	}
@@ -66,10 +66,10 @@ function set_submit_info(obj){
     $("#submit-id").val(get_id($(obj).parent().parent().parent().attr('id')));
     $.get("/db/get_item",{id:get_id($(obj).parent().parent().parent().attr('id'))},
 	  function(data){
-	      $("#title").val(decode_entities(data[0]["item_title"]));
-	      $("#content").val(decode_entities(data[0]["item_content"]));
+	      $("#submit-todo-title").val(decode_entities(data[0]["item_title"]));
+	      $("#submit-todo-content").val(decode_entities(data[0]["item_content"]));
 	      $("#submit-todo-state").text(data[0]["item_todo_state"]);
-	      $("#title").val(decode_entities(data[0]["item_title"]));
+	      $("#submit-todo-title").val(decode_entities(data[0]["item_title"]));
 	      set_submit_todo_state();
 	  });
 }
