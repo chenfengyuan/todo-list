@@ -6,7 +6,7 @@ TODO LIST是一个简单的todo list服务
 
 运行
 ----
-
+::
 # 启动postgres
 $ postgres -D /usr/local/var/postgres
 
