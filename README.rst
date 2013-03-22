@@ -21,6 +21,10 @@ TODO LIST是一个简单的todo list服务
    # 也可以直接按Change Todo来切换当前todo状态.
    # 前端和后端全部通过ajax交互.
 
+截图
+----
+.. 截图1: http://cfy.googlecode.com/files/Screen%20Shot%202013-03-22%20at%201.13.01%20PM.png
+
 实现功能
 --------
 
