@@ -1,5 +1,8 @@
+function get_id(id_str){
+    return id_str.replace("item-id-","");
+}
 function del(obj) {
-    $.get("/db/delete_item",{id:$(obj).parent().parent().parent().attr('id')},
+    $.get("/db/delete_item",{id:get_id($(obj).parent().parent().parent().attr('id'))},
 	  function(data){
 	      $(obj).parent().parent().parent().remove();
 	  });
@@ -60,8 +63,8 @@ var decode_entities = (function() {
     return decode_HTML_entities;
 })();
 function set_submit_info(obj){
-    $("#submit-id").val($(obj).parent().parent().parent().attr('id'));
-    $.get("/db/get_item",{id:$(obj).parent().parent().parent().attr('id')},
+    $("#submit-id").val(get_id($(obj).parent().parent().parent().attr('id')));
+    $.get("/db/get_item",{id:get_id($(obj).parent().parent().parent().attr('id'))},
 	  function(data){
 	      $("#title").val(decode_entities(data[0]["item_title"]));
 	      $("#content").val(decode_entities(data[0]["item_content"]));
@@ -79,7 +82,7 @@ function reload_todo_list(){
 
 function reload_todo_item_with_id(id){
     $.get("/get_item_html",{id:id},function(data){
-	$("#"+id).replaceWith(data);
+	$("#item-id-"+id).replaceWith(data);
     });
 }
 function get_last_todo_item(){
@@ -104,16 +107,16 @@ function set_submit_todo_state () {
     }
 }
 function change_todo_state (obj) {
-    var id = $(obj).parent().parent().parent().attr('id');
+    var id = get_id($(obj).parent().parent().parent().attr('id'));
     if(parseInt($("#item-todo-state-"+ id).text())===0){
 	$("#item-todo-state-"+ id).text("1");
-	$("#"+id).removeClass("alert-error");
-	$("#"+id).addClass("alert-success");
+	$("#item-id-"+id).removeClass("alert-error");
+	$("#item-id-"+id).addClass("alert-success");
 	$("#item-todo-state-dis-"+id).text("DONE");
     }else{
 	$("#item-todo-state-"+ id).text("0");
-	$("#"+id).removeClass("alert-success");
-	$("#"+id).addClass("alert-error");
+	$("#item-id-"+id).removeClass("alert-success");
+	$("#item-id-"+id).addClass("alert-error");
 	$("#item-todo-state-dis-"+id).text("TODO");
     }
     $.post("/db/update_item",{id:id,
@@ -121,12 +124,12 @@ function change_todo_state (obj) {
 }
 function set_alert(id){
     if((parseInt($("#item-todo-state-"+ id).text())===0)){
-	$("#"+id).removeClass("alert-success");
-	$("#"+id).addClass("alert-error");
+	$("#item-id-"+id).removeClass("alert-success");
+	$("#item-id-"+id).addClass("alert-error");
 	$("#item-todo-state-dis-"+id).text("TODO");
     }else{
-	$("#"+id).removeClass("alert-error");
-	$("#"+id).addClass("alert-success");
+	$("#item-id-"+id).removeClass("alert-error");
+	$("#item-id-"+id).addClass("alert-success");
 	$("#item-todo-state-dis-"+id).text("DONE");
     }
 }
