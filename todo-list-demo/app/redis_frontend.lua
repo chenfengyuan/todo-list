@@ -40,8 +40,7 @@ end
 
 function get_last_item()
    local red = redis_connect()
-   local id = red:rpop(tl_ids)
-   red:rpush(tl_ids,id)
+   local id = red:lrange(tl_ids,-1,-1)[1]
    local r ={JSON.decode(red:hget(tl,id))}
    red:set_keepalive(0, 100)
    return r
