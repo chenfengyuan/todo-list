@@ -19,6 +19,8 @@ function redis_connect()
       ngx.say("failed to connect: ", err)
       return
    end
+   local reuse = red:get_reused_times()
+   red:incr("reuse")
    return red
 end   
 
@@ -32,6 +34,7 @@ function get_all_items()
    for _,v in pairs(red:lrange(tl_ids,0,-1)) do
       push(items,JSON.decode(red:hget(tl,v)))
    end
+   red:set_keepalive(0, 100)
    return items
 end
 
@@ -39,43 +42,55 @@ function get_last_item()
    local red = redis_connect()
    local id = red:rpop(tl_ids)
    red:rpush(tl_ids,id)
-   return {JSON.decode(red:hget(tl,id))}
+   local r ={JSON.decode(red:hget(tl,id))}
+   red:set_keepalive(0, 100)
+   return r
 end
 
 function get_item(id)
    local red = redis_connect()
-   return {JSON.decode(red:hget(tl,id))}
+   local r = {JSON.decode(red:hget(tl,id))}
+   red:set_keepalive(0, 100)
+   return r
 end
 
 function count_items()
    local red = redis_connect()
-   return red:llen(tl_ids)
+   local r = red:llen(tl_ids)
+   red:set_keepalive(0, 100)
+   return r
 end
 
 function create_item(title,state,content)
    local red = redis_connect()
    local id = red:incr(tl_s)
    red:rpush(tl_ids,id)
-   return red:hset(tl,id,JSON.encode({item_todo_state = state,
-				      item_id = id,
-				      item_title = title,
-				      item_content = content}))
+   local r = red:hset(tl,id,JSON.encode({item_todo_state = state,
+					 item_id = id,
+					 item_title = title,
+					 item_content = content}))
+   red:set_keepalive(0, 100)
+   return r
 end
 
 function update_item(id,state,title,content)
    local red = redis_connect()
-   return red:hset(tl,id,JSON.encode({item_todo_state = state,
-				      item_id = id,
-				      item_title = title,
-				      item_content = content}))
+   local r = red:hset(tl,id,JSON.encode({item_todo_state = state,
+					 item_id = id,
+					 item_title = title,
+					 item_content = content}))
+   red:set_keepalive(0, 100)
+   return r
 end
 
 function delete_item(id)
    local red = redis_connect()
    red:lrem(tl_ids,1,id)
-   return red:hdel(tl,id)
+   local r = red:hdel(tl,id)
+   red:set_keepalive(0, 100)
+   return r
 end
 function test(req,resp)
-   resp:writeln(utils.strify(count_items()))
+   resp:writeln(utils.strify("hello,world!"))
 end
 
