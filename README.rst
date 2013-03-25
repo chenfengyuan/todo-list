@@ -70,6 +70,7 @@ TODO LIST是一个简单的todo list服务
 ----
 a) 看了下 Demiao Lin(ldmiao <at< gmail.com>推荐的文章之一: `由Lua 粘合的Nginx生态环境`_,才体会到原来协程是这么用的,lua是多么好用.接下去赶紧尝试下.
 
-
-   
+TODO
+----
+a) 错误处理   
 .. _由Lua 粘合的Nginx生态环境: http://blog.zoomquiet.org/pyblosxom/oss/openresty-intro-2012-03-06-01-13.html
