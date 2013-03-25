@@ -3,12 +3,13 @@ module("todo-list-public-api", package.seeall)
 local JSON = require("cjson")
 local Redis = require("resty.redis")
 local utils = require("awutils")
-local pg = require("pg_frontend")
+-- local pg = require("pg_frontend")
+local redis = require("redis_frontend")
 local html = require("htmlentities")
 local entities = html.htmlentities
 local rds_parser = require "rds.parser"
 
-local db = pg
+local db = redis
 
 function get_arg_html_entities_encoded(req,name,default)
    local arg = req:get_arg(name)
@@ -20,7 +21,7 @@ function get_arg_html_entities_encoded(req,name,default)
 end
 
 function count_items(req,resp)
-   return db.count_items()
+   resp:writeln(db.count_items())
 end
 
 function get_last_item_html(req,resp)

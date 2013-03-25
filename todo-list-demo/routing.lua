@@ -17,5 +17,5 @@ map('^/api/delete_item_json',            'todo-list-public-api.delete_item_json'
 map('^/api/get_last_item_html',          'todo-list-public-api.get_last_item_html')
 map('^/api/get_item_html',               'todo-list-public-api.get_item_html')
 map('^/api/get_all_items_html',          'todo-list-public-api.get_all_items_html')
-map('^/test',                            'todo-list-api.test')
+map('^/test',                            'redis_frontend.test')
 ---------------------------------------------------------------------
