@@ -15,7 +15,7 @@ function del(obj) {
 function todo_submit() {
 	id=$("#submit-id").val();
 	if ($("#submit-todo-content").val() !== "" &&
-	    $("#submit-todo-title").val() !== "") {
+		$("#submit-todo-title").val() !== "") {
 		if($("#submit-id").val()!==""){
 			$.post("/api/update_item_json",{
 				id:$("#submit-id").val(),

@@ -55,7 +55,7 @@ TODO LIST是一个简单的todo list服务
 7) 3.22上午:已经加入了todo状态功能.不过目前界面有点丑.
 8) 3.22下午:把代码整理了下,不过界面依然很丑.   
 9) 3.25上午:已将数据库部分和网页后端代码分离
-
+10) 3.25下午:可以在todo-list-public-api.lua中使db = redis来把后端存储换成redis
 
 计划
 ----
@@ -72,5 +72,6 @@ a) 看了下 Demiao Lin(ldmiao <at< gmail.com>推荐的文章之一: `由Lua 粘
 
 TODO
 ----
-a) 错误处理   
+a) 错误处理
+
 .. _由Lua 粘合的Nginx生态环境: http://blog.zoomquiet.org/pyblosxom/oss/openresty-intro-2012-03-06-01-13.html

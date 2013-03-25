@@ -10,21 +10,19 @@ local quote_pgsql_str = ndk.set_var.set_quote_pgsql_str
 function pg_conn(str)
    local pg_res = ngx.location.capture("/postgres_default",{vars = {internal_postgres_sql = str}})
    if pg_res.status ~= ngx.HTTP_OK or not pg_res.body then
-      error("failed to query PostgreSQL")
+      logger:e("failed to query PostgreSQL")
+      return nil,"failed to query PostgreSQL"
    end
    local res, err = rds_parser.parse(pg_res.body)
    if res == nil then
-      error("failed to parse: " .. err)
+      logger:e("failed to parse: " .. err)
+      return nil,"failed to parse: " .. err
    end
    return res;
 end
 
 function pg_conn_format(fmt,...)
    return pg_conn(string.format(fmt,...));
-end
-
-function test(req,resp)
-   delete_item(req,resp)
 end
 
 function get_all_items(start,limit)
@@ -53,7 +51,7 @@ function create_item(title,state,content)
 end
 
 function get_item(id)
-   local r = pg_conn_format("select * from tl_items where item_id = %s limit 1",quote_pgsql_str(id))
+   local r,err = pg_conn_format("select * from tl_items where item_id = %s limit 1",quote_pgsql_str(id))
    if (#r.resultset == 0 ) then
       return nil
    else
