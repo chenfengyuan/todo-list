@@ -42,7 +42,7 @@ function get_item(id)
 end
 
 function count_items()
-   return resp:writeln(pg_conn("select count(1) from tl_items").resultset[1].count)
+   return pg_conn("select count(1) from tl_items").resultset[1].count
 end
 
 function create_item(title,state,content)
