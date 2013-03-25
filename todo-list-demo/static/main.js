@@ -1,6 +1,7 @@
 function get_id(id_str){
 	return id_str.replace("item-id-","");
 }
+
 function del(obj) {
 	var id = get_id($(obj).parent().parent().parent().attr('id'));
 	if(id===$("#submit-id").val())
@@ -34,12 +35,14 @@ function todo_submit() {
 		submit_clear();
 	}
 }
+
 function submit_clear(){
 	$("#submit-id").val("");
 	$("#submit-todo-state").text("0");
 	$("#submit-todo-state-dis").text("TODO");
 	$("#create_form")[0].reset();
 }
+
 var decode_entities = (function() {
 	// Remove HTML Entities
 	var element = document.createElement('div');
@@ -65,6 +68,7 @@ var decode_entities = (function() {
 	}
 	return decode_HTML_entities;
 })();
+
 function set_submit_info(obj){
 	$("#submit-id").val(get_id($(obj).parent().parent().parent().attr('id')));
 	$.get("/api/get_item_json",{id:get_id($(obj).parent().parent().parent().attr('id'))},
@@ -76,6 +80,7 @@ function set_submit_info(obj){
 		      set_submit_todo_state();
 	      });
 }
+
 function reload_todo_list(){
 	$("#todo-list").empty();
 	$.get("/api/get_all_items_html",function(data){
@@ -88,11 +93,13 @@ function reload_todo_item_with_id(id){
 		$("#item-id-"+id).replaceWith(data);
 	});
 }
+
 function get_last_todo_item(){
 	$.get("/api/get_last_item_html",function(data){
 		$("#todo-list").append(data);
 	});
 }
+
 function change_submit_todo_state () {
 	if(parseInt($("#submit-todo-state").text())===0){
 		$("#submit-todo-state").text("1");
@@ -102,6 +109,7 @@ function change_submit_todo_state () {
 		$("#submit-todo-state-dis").text("TODO");
 	}
 }
+
 function set_submit_todo_state () {
 	if(parseInt($("#submit-todo-state").text())===0){
 		$("#submit-todo-state-dis").text("TODO");
@@ -109,6 +117,7 @@ function set_submit_todo_state () {
 		$("#submit-todo-state-dis").text("DONE");
 	}
 }
+
 function change_todo_state (obj) {
 	var id = get_id($(obj).parent().parent().parent().attr('id'));
 	if(id===$("#submit-id").val())
@@ -127,6 +136,7 @@ function change_todo_state (obj) {
 	$.post("/api/update_item_json",{id:id,
 					state:$("#item-todo-state-"+id).text()});
 }
+
 function set_alert(id){
 	if((parseInt($("#item-todo-state-"+ id).text())===0)){
 		$("#item-id-"+id).removeClass("alert-success");
